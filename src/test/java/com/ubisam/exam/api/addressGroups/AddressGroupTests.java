@@ -27,12 +27,78 @@ public class AddressGroupTests {
     //Crud - C
     mockMvc
       .perform(post("/api/addressGroups")
-      .content(docs::newEntity, "연구소"))
+      .content(docs::newEntity, "연구소1"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity1"))
+    ;
+    mockMvc
+      .perform(post("/api/addressGroups")
+      .content(docs::newEntity, "연구소2"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity2"))
+    ;
+    mockMvc
+      .perform(post("/api/addressGroups")
+      .content(docs::newEntity, "연구소3"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity3"))
+    ;
+    mockMvc
+      .perform(post("/api/addressGroups")
+      .content(docs::newEntity, "연구소4"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity4"))
+    ;
+    //Crud - R (해당 행)
+    String url = docs.context("entity1", "$._links.self.href");
+    System.out.println("url : " + url);
+    mockMvc
+      .perform(post(url))
       .andDo(print())
       .andExpect(is2xx())
     ;
+    mockMvc
+      .perform(get(url))
+      .andDo(print())
+      .andExpect(is4xx())
+    ;
+    
+    //Crud - U
+    Map<String, Object> entity = docs.context("entity1", "$");
+    mockMvc
+      .perform(put(url)
+      .content(docs::updateEntityName, entity, "시스템"))
+      .andExpect(is2xx())
+      .andDo(print())
+      .andExpect(isJson("$.name", "시스템"))
+    ;
 
-    //Crud - R (전체)
+    //Crud - R (수정 후 단건)
+    mockMvc
+      .perform(post(url))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andExpect(isJson("$.name", "시스템"))
+    ;
+  
+    //Crud - D
+    mockMvc
+      .perform(delete(url))
+      .andExpect(is2xx())
+      .andDo(print());
+
+    //Crud - R (삭제 후 단건) - 지워져서 데이터가 없으므로 is4xx() 기대
+    mockMvc
+      .perform(post(url))
+      .andDo(print())
+      .andExpect(is4xx())
+    ;
+    
+    //Search (검색)
     mockMvc
       .perform(post("/api/addressGroups/search")
       .content(docs::setKeyword, ""))
@@ -40,41 +106,13 @@ public class AddressGroupTests {
       .andExpect(is2xx())
     ;
 
-    //Crud - R (단건)
+    //Search (검색)
     mockMvc
       .perform(post("/api/addressGroups/search")
-      .content(docs::setKeyword, "연구소"))
-      .andDo(print())
-      .andExpect(is2xx())
-      .andDo(result(docs::context , "data_body"))
-    ;
-
-    //Crud - U
-    Map<String, Object> entity = docs.context("data_body", "$");
-    String url = docs.context("data_body", "$._embedded.addressGroups[0]._links.self.href");
-    System.out.println("url : " + url);
-
-    mockMvc
-      .perform(put(url)
-      .content(docs::updateEntity, entity, "홍길동111"))
-      .andExpect(is2xx())
-      .andDo(print())
-      .andExpect(isJson("$.name", "홍길동111"))
-    ;
-
-    //Crud - D
-    mockMvc
-      .perform(delete(url))
-      .andExpect(is2xx())
-      .andDo(print());
-
-    //Crud - R (삭제 후 단건)
-    mockMvc
-      .perform(post("/api/addressGroups/search")
-      .content(docs::setKeyword, "연구소"))
+      .content(docs::setKeyword, "연구소1"))
       .andDo(print())
       .andExpect(is2xx())
     ;
   }
-  
+
 }

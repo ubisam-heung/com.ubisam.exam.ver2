@@ -3,6 +3,7 @@ package com.ubisam.exam.api.addresses;
 import static io.u2ware.common.docs.MockMvcRestDocs.delete;
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
+import static io.u2ware.common.docs.MockMvcRestDocs.is4xx;
 import static io.u2ware.common.docs.MockMvcRestDocs.post;
 import static io.u2ware.common.docs.MockMvcRestDocs.print;
 import static io.u2ware.common.docs.MockMvcRestDocs.put;
@@ -51,21 +52,46 @@ public class AddressTests {
       .content(docs::newEntity, "홍길동"))
       .andDo(print())
       .andExpect(is2xx())
-      .andDo(result(docs::context , "data_body"))
-      ;
+      .andDo(result(docs::context , "entity1"))
+    ;
+    mockMvc
+      .perform(post("/api/addresses")
+      .content(docs::newEntity, "박길동"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity2"))
+    ;
+    mockMvc
+      .perform(post("/api/addresses")
+      .content(docs::newEntity, "김길동"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity3"))
+    ;
+    mockMvc
+      .perform(post("/api/addresses")
+      .content(docs::newEntity, "대길동"))
+      .andDo(print())
+      .andExpect(is2xx())
+      .andDo(result(docs::context , "entity4"))
+    ;
 
-    String name = docs.context("data_body", "$.name");
-    System.out.println(name);
-    
     //Crud - R
-    String url = docs.context("data_body", "$._links.self.href");
+    String url = docs.context("entity1", "$._links.self.href");
+    System.out.println("url : " + url);
     mockMvc
       .perform(get(url))
       .andExpect(is2xx())
-      .andDo(print());
+      .andDo(print())
+    ;
+    mockMvc
+      .perform(post(url))
+      .andDo(print())
+      .andExpect(is4xx())
+    ;
 
     //Crud - U
-    Map<String, Object> entity = docs.context("data_body", "$");
+    Map<String, Object> entity = docs.context("entity1", "$");
 
     mockMvc
       .perform(put(url)
@@ -75,17 +101,23 @@ public class AddressTests {
       .andExpect(isJson("$.name", "홍길동111"))
     ;
 
+    //Crud - R (수정 후 단건)
+    mockMvc
+      .perform(get(url))
+      .andExpect(is2xx())
+      .andDo(print())
+    ;
+
     //Crud - D
     mockMvc
       .perform(delete(url))
       .andExpect(is2xx())
       .andDo(print());
 
-    //Crud - R (삭제된 데이터 조회)
+    //Crud - R (삭제 후 단건) - 지워져서 데이터가 없으므로 is4xx() 기대
     mockMvc
-      .perform(get("/api/addresses"))
-      .andExpect(is2xx())
+      .perform(get(url))
+      .andExpect(is4xx())
       .andDo(print());
-
   }
 }
