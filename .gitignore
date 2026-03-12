@@ -1,14 +1,11 @@
-
-# === 프로젝트 공통 무시 규칙 ===
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 HELP.md
 target/
-
-# === Maven 관련 ===
-.mvn/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
 
 ### STS ###
 .apt_generated
@@ -37,6 +34,56 @@ build/
 
 ### VS Code ###
 .vscode/
+=======
+# Compiled class file
+*.class
+>>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
+
+# === 프로젝트 공통 무시 규칙 ===
+HELP.md
+target/
+
+# === Maven 관련 ===
+.mvn/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+<<<<<<< HEAD
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
 # VS Code 설정 및 작업 폴더 무시
 .vscode/*
 .vscode/**
+=======
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+>>>>>>> c6aebc6e96b7636c0a7ca0441097592e4b735a54
+>>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7

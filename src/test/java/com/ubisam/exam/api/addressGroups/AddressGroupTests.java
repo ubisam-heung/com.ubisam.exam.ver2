@@ -1,5 +1,6 @@
 package com.ubisam.exam.api.addressGroups;
 
+<<<<<<< HEAD
 import static io.u2ware.common.docs.MockMvcRestDocs.*;
 
 import java.util.Map;
@@ -77,4 +78,8 @@ public class AddressGroupTests {
     ;
   }
   
+=======
+public class AddressGroupTests {
+    
+>>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 }
