@@ -1,10 +1,7 @@
 package com.ubisam.exam;
 
-<<<<<<< HEAD
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 
-=======
->>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,7 +16,6 @@ import static io.u2ware.common.docs.MockMvcRestDocs.print;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ApplicationApiConfigTests {
-<<<<<<< HEAD
 
   @Autowired
   private MockMvc mockMvc;
@@ -34,15 +30,4 @@ public class ApplicationApiConfigTests {
 
   }
   
-=======
-    
-    @Autowired
-	private MockMvc mockMvc;
-
-    @Test
-    void contextLoads() throws Exception {
-        mockMvc.perform(get("/")).andExpect(is2xx()).andDo(print());
-    }
-
->>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 }

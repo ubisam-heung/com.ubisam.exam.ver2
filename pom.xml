@@ -30,29 +30,15 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-<<<<<<< HEAD
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<!-- JPA -->
-=======
->>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>
 		    <groupId>com.querydsl</groupId>
 		    <artifactId>querydsl-jpa</artifactId>
 		</dependency>
 		
-=======
-
->>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 		<!-- Rest -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -81,11 +67,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-				<dependency>
-=======
 		<dependency>
->>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
@@ -96,10 +78,6 @@
 				<version>3.5.11</version>
 				<scope>test</scope>
     </dependency>
-<<<<<<< HEAD
-		
-=======
->>>>>>> 0c893d8988430cc347921237be980fb47eb20eb7
 	</dependencies>
 
 	<build>
