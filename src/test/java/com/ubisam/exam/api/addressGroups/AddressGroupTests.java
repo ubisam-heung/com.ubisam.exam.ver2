@@ -71,7 +71,7 @@ public class AddressGroupTests {
     Map<String, Object> entity = docs.context("entity1", "$");
     mockMvc
       .perform(put(url)
-      .content(docs::updateEntityName, entity, "시스템"))
+      .content(docs::updateEntity, entity, "시스템"))
       .andExpect(is2xx())
       .andDo(print())
       .andExpect(isJson("$.name", "시스템"))
@@ -89,7 +89,8 @@ public class AddressGroupTests {
     mockMvc
       .perform(delete(url))
       .andExpect(is2xx())
-      .andDo(print());
+      .andDo(print())
+    ;
 
     //Crud - R (삭제 후 단건) - 지워져서 데이터가 없으므로 is4xx() 기대
     mockMvc

@@ -77,15 +77,15 @@ public class AddressTests {
     ;
 
     //Crud - R
-    String url = docs.context("entity1", "$._links.self.href");
-    System.out.println("url : " + url);
+    String url1 = docs.context("entity1", "$._links.self.href");
+    System.out.println("url1 : " + url1);
     mockMvc
-      .perform(get(url))
+      .perform(get(url1))
       .andExpect(is2xx())
       .andDo(print())
     ;
     mockMvc
-      .perform(post(url))
+      .perform(post(url1))
       .andDo(print())
       .andExpect(is4xx())
     ;
@@ -94,7 +94,7 @@ public class AddressTests {
     Map<String, Object> entity = docs.context("entity1", "$");
 
     mockMvc
-      .perform(put(url)
+      .perform(put(url1)
       .content(docs::updateEntity, entity, "홍길동111"))
       .andExpect(is2xx())
       .andDo(print())
@@ -103,20 +103,21 @@ public class AddressTests {
 
     //Crud - R (수정 후 단건)
     mockMvc
-      .perform(get(url))
+      .perform(get(url1))
       .andExpect(is2xx())
       .andDo(print())
     ;
 
     //Crud - D
     mockMvc
-      .perform(delete(url))
+      .perform(delete(url1))
       .andExpect(is2xx())
-      .andDo(print());
+      .andDo(print())
+    ;
 
     //Crud - R (삭제 후 단건) - 지워져서 데이터가 없으므로 is4xx() 기대
     mockMvc
-      .perform(get(url))
+      .perform(get(url1))
       .andExpect(is4xx())
       .andDo(print());
   }

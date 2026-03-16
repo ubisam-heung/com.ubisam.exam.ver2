@@ -16,18 +16,8 @@ public class AddressGroupDocs extends MockMvcRestDocs{
     return addressGroup;
   }
 
-  public Map<String, Object> updateEntityName(Map<String, Object> entity, String name){
+  public Map<String, Object> updateEntity(Map<String, Object> entity, String name){
     entity.put("name", name);
-    return entity;
-  }
-
-  public Map<String, Object> updateEntityPhone(Map<String, Object> entity, String phone){
-    entity.put("phone", phone);
-    return entity;
-  }
-
-  public Map<String, Object> updateEntityAddress(Map<String, Object> entity, String address){
-    entity.put("address", address);
     return entity;
   }
 
